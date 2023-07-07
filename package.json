@@ -1,0 +1,21 @@
+{
+  "name": "TempMee",
+  "description": "E2E tests for TempMee WebApp",
+  "scripts": {
+    "cy.open": "cypress open",
+    "cy.run": "cypress run",
+    "lint": "prettier cypress/ --check",
+    "format": "prettier cypress / --write --list-different"
+  },
+  "author": "Serhiy Nehoda",
+  "dependencies": {
+    "cypress": "^12.16.0",
+    "cypress-mochawesome-reporter": "^3.5.1",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0",
+    "prettier": "3.0.0",
+    "typescript": "^5.1.6"
+  }
+}
