@@ -1,6 +1,6 @@
-import {validData} from '../helpers/testData'
 import {buttons} from '../helpers/names'
 import {mainPage} from '../helpers/selectors'
+import {dentist, endpoints} from "../helpers/testData";
 
 describe('Login', () => {
   beforeEach('', () => {
@@ -11,15 +11,18 @@ describe('Login', () => {
   it('Login with valid credentials', () => {
     cy.contains(mainPage.selA, buttons.officeLogin).then(btn => {
       cy.wrap(btn).click({force: true})
-      cy.get(mainPage.email).type(validData.email)
-      cy.get(mainPage.password).type(validData.password)
-      cy.contains(mainPage.button, buttons.signIn).then(btn => {
-        cy.wrap(btn).click({force: true})
-      })
-      cy.get(mainPage.alert).contains(buttons.ok).click({force: true})
-      cy.get(mainPage.selH1).should('be.visible').contains(buttons.generalInfo)
-      cy.get(mainPage.firstName).first().should('be.visible').and('contain.value', 'Ivan')
-      cy.get(mainPage.lastName).first().should('be.visible').and('contain.value', 'Polubotko')
     })
+    // cy.get(mainPage.email).type('snehoda@gmail.com')
+    // cy.get(mainPage.password).type('merdoc1981')
+    cy.inputText(mainPage.email, 'snehoda@gmail.com')
+    cy.inputText(mainPage.password, 'merdoc1981')
+    cy.clickOnButton(buttons.signIn)
+    cy.clickOnButton(buttons.ok)
+    cy.verifyTextOfEl(mainPage.selH1, buttons.generalInfo)
+    cy.verifyUrl(endpoints.registration)
+    cy.verifyValueOfFirstEl(mainPage.firstName, dentist.firstName)
+    cy.verifyValueOfFirstEl(mainPage.lastName, dentist.lastName)
+    // cy.get(mainPage.firstName).first().should('be.visible').and('contain.value', 'Ivan')
+    // cy.get(mainPage.lastName).first().should('be.visible').and('contain.value', 'Polubotko')
   })
 })
