@@ -10,7 +10,6 @@ module.exports = defineConfig({
     baseUrl: process.env.BASE_URL,
     viewportWidth: 1280,
     viewportHeight: 720,
-    defaultCommandTimeout: 10000,
-    excludeSpecPattern: ['**/1-geting-started/*','**/2-advanced-examples/*']
+    defaultCommandTimeout: 10000
   },
 });
